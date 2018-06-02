@@ -2,6 +2,23 @@
 
 <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-@{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
+<hr />
+
+@if (ViewBag.jobs != null)
+{
+
+    // TODO #2 - Loop over jobs dictionary and display all job fields
+    @foreach (Dictionary<string, string> job in ViewBag.jobs)
+    {
+        <table class="job-listing">
+            @foreach (string key in job.Keys)
+            {
+                <tr>
+                    <td>@key</td>
+                    <td><a asp-controller="Search" asp-action="Results" asp-route-searchType="@key" asp-route-searchTerm="@job[key]">@job[@key]</a></td>
+                </tr>
+            }
+        </table>
+
+    }
 }
